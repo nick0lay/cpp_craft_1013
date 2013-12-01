@@ -28,16 +28,7 @@ int main(){
 				if (current_time < message->time()){
 					current_time = message->time();
 				}
-				std::map<boost::uint32_t, buffer>::iterator it;
-				it = buffers_container.find(message->type());
-				if (it != buffers_container.end()){
-					(*it).second.write(*message);
-				}
-				else {
-					buffer *buf = new buffer(max_buffer_size);
-					buf->write(*message);
-					buffers_container.insert(std::pair<boost::uint32_t, buffer>(message->type(), *buf));
-				}
+				(buffers_container[message->type()]).write(*message);
 			}
 		}
 		std::map<boost::uint32_t, buffer>::iterator it;
@@ -48,6 +39,7 @@ int main(){
 			double average = static_cast<double>((*it).second.count()) / static_cast<double>(current_time);
 			os.write(reinterpret_cast<char*>(&type), sizeof(type));
 			os.write(reinterpret_cast<char*>(&average), sizeof(average));
+			std::cout << "type:" << type << ", average:" << average << std::endl;
 			it++;
 		}
 		is.close();

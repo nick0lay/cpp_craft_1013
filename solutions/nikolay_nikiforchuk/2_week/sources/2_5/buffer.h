@@ -11,7 +11,7 @@ private:
 	boost::uint32_t current_time = 0;
 
 public:
-	explicit buffer(boost::uint32_t size);
+	explicit buffer();
 	bool write(binary_reader::market_message &message);
 	boost::uint32_t count();
 	void clear();

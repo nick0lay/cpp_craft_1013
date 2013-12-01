@@ -1,7 +1,7 @@
 #include "buffer.h"
 
-buffer::buffer(boost::uint32_t size){
-	init_size = size;
+buffer::buffer(){
+	//init_size = size;
 }
 
 bool buffer::write(binary_reader::market_message &message){
