@@ -1,4 +1,6 @@
 #include "stock_data.h"
+#include <iostream>
+#include <fstream>
 
 binary_reader::stock_data::stock_data( std::ifstream& in )
 {
@@ -53,7 +55,10 @@ void binary_reader::stock_data::write( std::ofstream& out )
 	write_binary( out, date );
 	write_binary( out, vwap_ );
 	write_binary( out, volume_ );
-	write_binary( out, f2_ );	
+	write_binary( out, f1_ );
+	write_binary( out, f4_ );
+	write_binary( out, f3_ );
+	//std::cout << " name:" << stock_name << " date:" << date << " volume:" << volume_ << " f3_:" << f3_ << std::endl;
 }
 void binary_reader::stock_data::write_raw( std::ofstream& out )
 {	
@@ -68,3 +73,4 @@ void binary_reader::stock_data::write_raw( std::ofstream& out )
 	write_binary( out, f3_ );
 	write_binary( out, f4_ );	
 }
+
